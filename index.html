@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATM Simulation</title>
+    <script>
+        function atm() {
+            let enteredPinCount = 3;
+            let pinNumber = 1234;
+
+            function atmInteraction() {
+                let randome = parseInt(prompt("Enter your pin number:"));
+                
+                if(randome === pinNumber){
+                    let myMoney = parseInt(prompt("Please enter the money:"));
+                    alert("Please take RS:" + myMoney);
+
+                    let enteredNumber = parseInt(prompt("Do you want to continue? Press 1 for continue or press 2 for exit:"));
+                    if(enteredNumber !== 1) {
+                        alert("Thank you for visiting...");
+                        return;
+                    }
+                } else {
+                    enteredPinCount--;
+                    alert("Please enter the correct pin. Alert!!! " + enteredPinCount + " more attempt(s) remaining...");
+                    
+                    if(enteredPinCount === 0){
+                        alert("Sorry! your ATM card is blocked for 24 hours");
+                        return;
+                    }
+                }
+                atmInteraction(); // Recursive call to continue the loop
+            }
+            
+            atmInteraction(); // Initial call to start the process
+        }
+    </script>
+</head>
+<body onload="atm()">
+</body>
+</html>
